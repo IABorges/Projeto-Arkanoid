@@ -15,8 +15,8 @@ public class controllPaddle : MonoBehaviour
          rb2d = GetComponent<Rigidbody2D>(); 
     }
 
-    // Update is called once per frame
-    void Update () {
+    void FixedUpdate()
+    {
 
         var vel = rb2d.linearVelocity;                // Acessa a velocidade da raquete
         if (Input.GetKey(moveRight)) {             // Velocidade da Raquete para ir para cima
