@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class controllPadldle : MonoBehaviour
+public class controllPaddle : MonoBehaviour
 {
 
     public KeyCode moveRight = KeyCode.D;      // Move a raquete para cima
