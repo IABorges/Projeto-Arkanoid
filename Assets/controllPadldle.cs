@@ -30,14 +30,10 @@ public class controllPaddle : MonoBehaviour
         }
         rb2d.linearVelocity = vel;                    // Atualizada a velocidade da raquete
 
-        var pos = transform.position;           // Acessa a Posição da raquete
-        if (pos.x > boundX) {                  
-            pos.x = boundX;                     // Corrige a posicao da raquete caso ele ultrapasse o limite superior
-        }
-        else if (pos.x < -boundX) {
-            pos.x = -boundX;                    // Corrige a posicao da raquete caso ele ultrapasse o limite inferior
-        }
-        transform.position = pos;               // Atualiza a posição da raquete
+        // trava a posicao usando o proprio Rigidbody2D, nao o transform
+        Vector2 clampedPos = rb2d.position;
+        clampedPos.x = Mathf.Clamp(clampedPos.x, -boundX, boundX);
+        rb2d.position = clampedPos;
     
     }
 
