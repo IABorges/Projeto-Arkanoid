@@ -2,39 +2,35 @@ using UnityEngine;
 
 public class controllPaddle : MonoBehaviour
 {
+    public KeyCode moveLeft = KeyCode.A;
+    public KeyCode moveRight = KeyCode.D;
+    public float speed = 10.0f;
+    public float boundX = 2.25f;
+    private Rigidbody2D rb2d;
 
-    public KeyCode moveRight = KeyCode.D;      // Move a raquete para cima
-    public KeyCode moveLeft = KeyCode.A;    // Move a raquete para baixo
-    public float speed = 10.0f;             // Define a velocidade da raquete
-    public float boundX = 2.25f;            // Define os limites em Y
-    private Rigidbody2D rb2d;  
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-         rb2d = GetComponent<Rigidbody2D>(); 
+         rb2d = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-
-        var vel = rb2d.linearVelocity;                // Acessa a velocidade da raquete
-        if (Input.GetKey(moveRight)) {             // Velocidade da Raquete para ir para cima
+        var vel = rb2d.linearVelocity;
+        if (Input.GetKey(moveRight)) {
             vel.x = speed;
         }
-        else if (Input.GetKey(moveLeft)) {      // Velocidade da Raquete para ir para cima
-            vel.x = -speed;                    
+        else if (Input.GetKey(moveLeft)) {
+            vel.x = -speed;
         }
         else {
-            vel.x = 0;                          // Velociade para manter a raquete parada
+            vel.x = 0;
         }
-        rb2d.linearVelocity = vel;                    // Atualizada a velocidade da raquete
+        rb2d.linearVelocity = vel;
 
-        // trava a posicao usando o proprio Rigidbody2D, nao o transform
+        // trava a posição usando o próprio Rigidbody2D, não o transform
         Vector2 clampedPos = rb2d.position;
         clampedPos.x = Mathf.Clamp(clampedPos.x, -boundX, boundX);
         rb2d.position = clampedPos;
-    
     }
 
 }
