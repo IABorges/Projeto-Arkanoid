@@ -10,21 +10,26 @@ public class controllPaddle : MonoBehaviour
 
     void Start()
     {
-         rb2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
         var vel = rb2d.linearVelocity;
-        if (Input.GetKey(moveRight)) {
+
+        if (Input.GetKey(moveRight))
+        {
             vel.x = speed;
         }
-        else if (Input.GetKey(moveLeft)) {
+        else if (Input.GetKey(moveLeft))
+        {
             vel.x = -speed;
         }
-        else {
+        else
+        {
             vel.x = 0;
         }
+
         rb2d.linearVelocity = vel;
 
         // trava a posição usando o próprio Rigidbody2D, não o transform
@@ -32,5 +37,4 @@ public class controllPaddle : MonoBehaviour
         clampedPos.x = Mathf.Clamp(clampedPos.x, -boundX, boundX);
         rb2d.position = clampedPos;
     }
-
 }
